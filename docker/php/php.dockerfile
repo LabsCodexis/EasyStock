@@ -46,8 +46,15 @@ RUN useradd -G www-data,root -u 1000 -d /home/labs labs && \
     chown -R labs:labs /home/labs
 
 # Set working directory
-RUN chown -R $user:www-data /var/www
 WORKDIR /var/www
+
+# Copy project files into the container
+COPY . /var/www
+
+# Adjust permissions
+RUN chown -R $user:www-data /var/www
+
+# Switch to the defined user
 USER $user
 
 # Expose the port for Render
