@@ -54,6 +54,9 @@ COPY . /var/www
 # Adjust permissions
 RUN chown -R $user:www-data /var/www
 
+# Install PHP dependencies via Composer
+RUN composer install --no-dev --optimize-autoloader
+
 # Switch to the defined user
 USER $user
 
