@@ -49,3 +49,9 @@ RUN useradd -G www-data,root -u 1000 -d /home/labs labs && \
 RUN chown -R $user:www-data /var/www
 WORKDIR /var/www
 USER $user
+
+# Expose the port for Render
+EXPOSE 8080
+
+# Run Laravel's built-in server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
