@@ -59,9 +59,11 @@ RUN pecl install xdebug-3.4.1 \
 #=====Imagic
 
 # Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+# Create system user
+RUN useradd -G www-data,root -u 1000 -d /home/labs labs && \
+    mkdir -p /home/labs/.composer && \
+    chown -R labs:labs /home/labs
+
 
 # Set working directory
 RUN chown -R $user:www-data /var/www
