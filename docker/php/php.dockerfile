@@ -60,8 +60,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Switch to the defined user
 USER $user
 
-# Expose the port for Render
-EXPOSE 8080
+# Expose the port for Nginx
+EXPOSE 9000
 
-# Run Laravel's built-in server
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+# Run PHP-FPM (Nginx vai se conectar a ele)
+CMD ["php-fpm"]
