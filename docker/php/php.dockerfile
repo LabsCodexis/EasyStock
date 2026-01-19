@@ -1,67 +1,46 @@
 FROM php:8.4-fpm
 
-# Arguments defined in docker-compose.yml
 ARG user
 ARG uid
 
-# Install system dependencies
+# Instala dependências do sistema
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libonig-dev \
-    libpq-dev \
-    libcurl4-openssl-dev \
-    unzip \
-    zip \
-    libzip-dev \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    vim \
-    gcc \
-    make \
-    autoconf \
-    libc-dev \
+    git curl libonig-dev libpq-dev libcurl4-openssl-dev unzip zip \
+    libzip-dev libpng-dev libjpeg62-turbo-dev libfreetype6-dev vim \
+    gcc make autoconf libc-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Configure GD & ZIP
+# Extensões PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd zip curl pgsql pdo_pgsql pdo_mysql mbstring exif pcntl bcmath
 
-# Install Composer
+# Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install xlswriter via PECL
-RUN pecl install xlswriter \
-    && docker-php-ext-enable xlswriter
+# xlswriter
+RUN pecl install xlswriter && docker-php-ext-enable xlswriter
 
-# Install Xdebug
-RUN pecl install xdebug-3.4.1 \
-    && docker-php-ext-enable xdebug
+# Xdebug
+RUN pecl install xdebug-3.4.1 && docker-php-ext-enable xdebug
 
-# Create system user
-RUN useradd -G www-data,root -u 1000 -d /home/labs labs && \
-    mkdir -p /home/labs/.composer && \
-    chown -R labs:labs /home/labs
+# Usuário
+RUN useradd -G www-data,root -u 1000 -d /home/labs labs \
+    && mkdir -p /home/labs/.composer \
+    && chown -R labs:labs /home/labs
 
-# Set working directory
+# Diretório de trabalho
 WORKDIR /var/www
-
-# Copy project files into the container
 COPY . /var/www
-
-# Adjust permissions
 RUN chown -R $user:www-data /var/www
 
-# Install PHP dependencies via Composer
+# Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Switch to the defined user
 USER $user
 
-# Expose the port for Nginx
-EXPOSE 9000
+# Porta que o Render vai detectar
+EXPOSE 8080
 
-# Run PHP-FPM (Nginx vai se conectar a ele)
-CMD ["php-fpm"]
+# PHP Built-in server
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
