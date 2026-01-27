@@ -3,9 +3,10 @@
 use Illuminate\Support\Str;
 
 $rawDbHost = env('DB_HOST', '127.0.0.1');
-$dbHost = is_string($rawDbHost)
-    ? preg_replace('/\\.render\\.com$/', '', $rawDbHost)
-    : $rawDbHost;
+$dbHost = $rawDbHost;
+if (is_string($rawDbHost) && str_contains($rawDbHost, '.render.com')) {
+    $dbHost = explode('.', $rawDbHost, 2)[0];
+}
 
 return [
 
