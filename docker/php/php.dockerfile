@@ -43,4 +43,5 @@ EXPOSE 8080
 
 # PHP Built-in server com migration
 RUN chmod +x /var/www/docker/php/start.sh
-CMD ["/var/www/docker/php/start.sh"]
+ENTRYPOINT ["/var/www/docker/php/start.sh"]
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]

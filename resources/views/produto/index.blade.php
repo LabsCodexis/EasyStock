@@ -159,7 +159,7 @@
                                                                   style="font-size: 2.5rem;"></i></div>
                         <h4 class="text-muted fw-semibold mb-2">Nenhum produto cadastrado</h4>
                         <p class="text-muted mb-4">Comece adicionando seu primeiro produto ao estoque</p>
-                        <a href="{{ route('produtos.create') }}"
+                        <a href="javascript:void(0)" onclick="openAdcModal()"
                            class="btn btn-success shadow-sm d-inline-flex align-items-center gap-2">
                             <i class="bi bi-plus-circle"></i> Cadastrar Primeiro Produto
                         </a>
