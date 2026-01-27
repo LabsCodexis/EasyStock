@@ -7,6 +7,8 @@ use App\Http\Controllers\EstoqueController;
 use App\Http\Controllers\VendaController;
 use App\Http\Controllers\RelatorioController;
 
+Route::get('/', [ProdutoController::class, 'index'])->name('home');
+
 /*
 |--------------------------------------------------------------------------
 | Rotas de Produtos
