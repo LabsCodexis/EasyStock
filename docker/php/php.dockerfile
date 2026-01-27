@@ -41,5 +41,6 @@ RUN composer install --no-dev --optimize-autoloader
 # Expor porta padrão (Render fornece PORT em runtime)
 EXPOSE 8080
 
-# PHP Built-in server (expande PORT em runtime)
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
+# PHP Built-in server com migration
+RUN chmod +x /var/www/docker/php/start.sh
+CMD ["/var/www/docker/php/start.sh"]
