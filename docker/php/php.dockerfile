@@ -38,8 +38,8 @@ RUN chown -R $user:www-data /var/www
 USER $user
 RUN composer install --no-dev --optimize-autoloader
 
-# Expor porta (Render define a variável $PORT)
-EXPOSE $PORT
+# Expor porta padrão (Render fornece PORT em runtime)
+EXPOSE 8080
 
-# PHP Built-in server
-CMD ["php", "-S", "0.0.0.0:$PORT", "-t", "public"]
+# PHP Built-in server (expande PORT em runtime)
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
