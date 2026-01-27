@@ -1,7 +1,7 @@
 FROM php:8.4-fpm
 
-ARG user
-ARG uid
+ARG user=labs
+ARG uid=1000
 
 # Instala dependências do sistema
 RUN apt-get update && apt-get install -y \
@@ -21,26 +21,25 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # xlswriter
 RUN pecl install xlswriter && docker-php-ext-enable xlswriter
 
-# Xdebug
+# Xdebug (opcional em produção)
 RUN pecl install xdebug-3.4.1 && docker-php-ext-enable xdebug
 
 # Usuário
-RUN useradd -G www-data,root -u 1000 -d /home/labs labs \
-    && mkdir -p /home/labs/.composer \
-    && chown -R labs:labs /home/labs
+RUN useradd -G www-data -u $uid -d /home/$user $user \
+    && mkdir -p /home/$user/.composer \
+    && chown -R $user:$user /home/$user
 
 # Diretório de trabalho
 WORKDIR /var/www
 COPY . /var/www
 RUN chown -R $user:www-data /var/www
 
-# Composer dependencies
+# Instala dependências do Composer
+USER $user
 RUN composer install --no-dev --optimize-autoloader
 
-USER $user
-
-# Porta que o Render vai detectar
-EXPOSE 8080
+# Expor porta (Render define a variável $PORT)
+EXPOSE $PORT
 
 # PHP Built-in server
-CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
+CMD ["php", "-S", "0.0.0.0:$PORT", "-t", "public"]
