@@ -167,7 +167,7 @@
                 @else
                     <div class="bg-light bg-opacity-50 rounded-3 border overflow-hidden">
                         <div class="table-responsive" id="produtos-table">
-                            <table class="table table-hover align-middle mb-0">
+                            <table class="table table-hover align-middle mb-0 responsive-table">
                                 <thead class="bg-light">
                                 <tr>
                                     <th class="px-4 py-3 text-uppercase fw-semibold small text-muted border-0"><i

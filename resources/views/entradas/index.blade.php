@@ -85,7 +85,7 @@
                             </button>
 
                             <div class="mt-6 overflow-x-auto">
-                                <table class="w-full text-sm text-left text-slate-700">
+                                <table class="w-full text-sm text-left text-slate-700 responsive-table">
                                     <thead class="bg-slate-100">
                                     <tr>
                                         <th class="px-4 py-2">Produto</th>
@@ -97,7 +97,7 @@
                                     </thead>
                                     <tbody id="tabela-produtos">
                                     <tr>
-                                        <td colspan="5" class="px-4 py-2 text-center text-slate-400">Nenhum produto selecionado</td>
+                                        <td colspan="5" class="px-4 py-2 text-center text-slate-400" data-label="Produtos">Nenhum produto selecionado</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -183,15 +183,15 @@
                 const linha = document.createElement('tr');
                 linha.classList.add('border-b','hover:bg-slate-50','product-row');
                 linha.innerHTML = `
-                <td class="px-4 py-2">
+                <td class="px-4 py-2" data-label="Produto">
                     ${nome}
                     <input type="hidden" name="produtos[]" value="${id}">
                     <input type="hidden" name="categorias[]" value="${categoria}">
                 </td>
-                <td class="px-4 py-2"><input type="hidden" name="quantidades[]" value="${quantidade}">${quantidade}</td>
-                <td class="px-4 py-2"><input type="hidden" name="valores_unitarios[]" value="${valor}">R$ ${valor.toFixed(2).replace('.',',')}</td>
-                <td class="px-4 py-2">R$ ${total}</td>
-                <td class="px-4 py-2"><button type="button" onclick="removerLinha(this)" class="text-red-500 font-semibold">Remove</button></td>
+                <td class="px-4 py-2" data-label="Quantidade"><input type="hidden" name="quantidades[]" value="${quantidade}">${quantidade}</td>
+                <td class="px-4 py-2" data-label="Preço Unitário"><input type="hidden" name="valores_unitarios[]" value="${valor}">R$ ${valor.toFixed(2).replace('.',',')}</td>
+                <td class="px-4 py-2" data-label="Total">R$ ${total}</td>
+                <td class="px-4 py-2" data-label="Remover"><button type="button" onclick="removerLinha(this)" class="text-red-500 font-semibold">Remove</button></td>
             `;
                 tabela.appendChild(linha);
                 select.value=''; quantidadeInput.value=1;

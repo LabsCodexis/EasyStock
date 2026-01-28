@@ -2,16 +2,16 @@
     <tbody id="produtos-tbody">
     @foreach($produtosPag as $produto)
         <tr class="table-row-hover bg-white" data-id="{{ $produto->id }}">
-            <td class="px-4 py-3">
+            <td class="px-4 py-3" data-label="Produto">
                 <div class="d-flex align-items-center gap-3">
                     <div class="d-flex align-items-center justify-content-center rounded-3 flex-shrink-0" style="width: 40px; height: 40px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(20, 184, 166, 0.1));"><i class="bi bi-box-seam text-success"></i></div>
                     <span class="fw-semibold text-dark">{{ $produto->nome }}</span>
                 </div>
             </td>
-            <td class="px-4 py-3 text-center"><span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-3 py-2"> {{ $produto->categoria }} </span></td>
+            <td class="px-4 py-3 text-center" data-label="Categoria"><span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-3 py-2"> {{ $produto->categoria }} </span></td>
 {{--            <td class="px-4 py-3 text-center"><span class="badge bg-secondary bg-opacity-25 text-dark fw-semibold px-3 py-2"> {{ $produto->quantidade }} </span></td>--}}
-            <td class="px-4 py-3 text-center"><span class="fw-bold text-success"> R$ {{ number_format($produto->valor, 2, ',', '.') }} </span></td>
-            <td class="px-4 py-3 text-center">
+            <td class="px-4 py-3 text-center" data-label="Valor Unit."><span class="fw-bold text-success"> R$ {{ number_format($produto->valor, 2, ',', '.') }} </span></td>
+            <td class="px-4 py-3 text-center" data-label="Ações">
                 <div class="d-flex align-items-center justify-content-center gap-2">
                     <button type="button" class="btn btn-sm btn-warning btn-action"
                             style="width:36px; height:36px;"

@@ -11,12 +11,12 @@
             )"
         >
 
-            <td class="px-6 py-4 font-medium text-gray-800">{{ $produto->categoria }}</td>
-            <td class="px-6 py-4 font-medium text-gray-800">{{ $nomesProdutos[$produto->id] }}</td>
-            <td class="px-6 py-4 text-center font-semibold text-green-600">
+            <td class="px-6 py-4 font-medium text-gray-800" data-label="Categoria">{{ $produto->categoria }}</td>
+            <td class="px-6 py-4 font-medium text-gray-800" data-label="Produto">{{ $nomesProdutos[$produto->id] }}</td>
+            <td class="px-6 py-4 text-center font-semibold text-green-600" data-label="Valor Unitário">
                 R$ {{ number_format($produto['valor_unitario'],2,',','.') }}
             </td>
-            <td class="px-6 py-4 text-center">
+            <td class="px-6 py-4 text-center" data-label="Estoque">
                 @if($produto['quantidade'] > 10)
                     <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-bold">
                                                     {{ $produto['quantidade'] }}

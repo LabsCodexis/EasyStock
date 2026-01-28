@@ -19,7 +19,62 @@
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.5.14/dist/vuetify.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.5.14/dist/vuetify.min.js"></script>
 
-    <style>@view-transition { navigation: auto; }</style>
+    <style>
+        @view-transition { navigation: auto; }
+
+        @media (max-width: 768px) {
+            .responsive-table {
+                width: 100% !important;
+                min-width: 0 !important;
+            }
+
+            .responsive-table thead {
+                display: none;
+            }
+
+            .responsive-table,
+            .responsive-table tbody,
+            .responsive-table tr,
+            .responsive-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .responsive-table tr {
+                margin-bottom: 12px;
+                border: 1px solid #e5e7eb;
+                border-radius: 12px;
+                padding: 8px;
+                background: #ffffff;
+            }
+
+            .responsive-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                padding: 8px 12px;
+                text-align: right;
+                border: 0;
+            }
+
+            .responsive-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #64748b;
+                text-align: left;
+                padding-right: 12px;
+            }
+
+            .responsive-table td[data-label="Ações"] {
+                justify-content: flex-end;
+            }
+
+            .responsive-table td[data-label="Ações"]::before {
+                margin-right: auto;
+            }
+        }
+    </style>
 
 
 </head>
