@@ -131,7 +131,7 @@
                     </form>
                 </div>
 
-                <div class="overflow-x-auto bg-white shadow rounded-lg">
+                <div class="table-scroll bg-white shadow rounded-lg">
                     <div class="px-6 py-4 bg-gray-50 border-b flex items-center justify-between">
 
                         <div class="flex items-center gap-2">
@@ -154,7 +154,7 @@
                     </div>
 
                     <div id="app">
-                        <table class="min-w-full divide-y divide-gray-200 responsive-table">
+                        <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Produto</th>

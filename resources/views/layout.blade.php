@@ -23,62 +23,19 @@
     <style>
         @view-transition { navigation: auto; }
 
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         @media (max-width: 768px) {
-            .responsive-table {
-                width: 100% !important;
-                min-width: 0 !important;
+            .table-scroll table {
+                min-width: 640px;
             }
 
-            .responsive-table thead {
-                display: none;
-            }
-
-            .responsive-table,
-            .responsive-table tbody,
-            .responsive-table tr,
-            .responsive-table td {
-                display: block;
-                width: 100%;
-            }
-
-            .responsive-table tr {
-                margin-bottom: 12px;
-                border: 1px solid #e5e7eb;
-                border-radius: 12px;
-                padding: 8px;
-                background: #ffffff;
-            }
-
-            .responsive-table td {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                gap: 12px;
-                padding: 8px 12px;
-                text-align: left;
-                border: 0;
-                word-break: break-word;
-            }
-
-            .responsive-table td::before {
-                content: attr(data-label);
-                font-weight: 600;
-                color: #64748b;
-                text-align: left;
-                padding-right: 12px;
-                flex: 0 0 42%;
-            }
-
-            .responsive-table td > * {
-                max-width: 100%;
-            }
-
-            .responsive-table td[data-label="Ações"] {
-                justify-content: space-between;
-            }
-
-            .responsive-table td[data-label="Ações"]::before {
-                margin-right: 0;
+            .table-scroll th,
+            .table-scroll td {
+                white-space: nowrap;
             }
         }
     </style>

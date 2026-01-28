@@ -84,8 +84,8 @@
                                 Adicionar Produto à Tabela
                             </button>
 
-                            <div class="mt-6 overflow-x-auto">
-                                <table class="w-full text-sm text-left text-slate-700 responsive-table">
+                            <div class="mt-6 table-scroll">
+                                <table class="w-full text-sm text-left text-slate-700">
                                     <thead class="bg-slate-100">
                                     <tr>
                                         <th class="px-4 py-2">Produto</th>

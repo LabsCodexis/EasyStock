@@ -417,8 +417,8 @@
                             </span>
                         </div>
 
-                        <div class="overflow-x-auto px-4 py-2">
-                            <table class="w-full text-sm responsive-table">
+                        <div class="table-scroll px-4 py-2">
+                            <table class="w-full text-sm">
                                 <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
                                 <tr>
                                     <th class="px-6 py-3 text-left">Categoria</th>
