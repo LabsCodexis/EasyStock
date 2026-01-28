@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Controle de Estoque e Caixa</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -22,12 +23,12 @@
 
 
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
 
 <div class="min-h-screen flex">
 
-        <!-- Menu lateral -->
-    <aside class="w-64 bg-gray-900 text-white flex flex-col p-4">
+    <!-- Menu lateral -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-gray-900 text-white flex flex-col p-4 transform -translate-x-full transition-transform duration-200 ease-out lg:static lg:translate-x-0">
         <!-- Logo e Nome do Sistema -->
         <div class="mb-8 text-center">
             <h1 class="text-2xl font-bold flex items-center justify-center gap-2">
@@ -66,13 +67,56 @@
         </div>
     </aside>
 
+    <!-- Overlay mobile -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200 lg:hidden"></div>
 
-    <!-- Conteúdo principal -->
-    <main class="flex-1 p-6">
-        @yield('conteudo')
-    </main>
+    <div class="flex-1 min-w-0">
+        <!-- Top bar mobile -->
+        <header class="lg:hidden sticky top-0 z-30 bg-gray-900 text-white px-4 py-3 flex items-center gap-3 shadow">
+            <button id="sidebar-toggle" class="p-2 rounded-md bg-white/10 hover:bg-white/20 transition" type="button" aria-label="Abrir menu">
+                <i class="bi bi-list text-xl"></i>
+            </button>
+            <div class="font-semibold">Easy Stock</div>
+        </header>
+
+        <!-- Conteúdo principal -->
+        <main class="p-4 sm:p-6 lg:p-6">
+            @yield('conteudo')
+        </main>
+    </div>
 
 </div>
+
+<script>
+    (function () {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+        const toggle = document.getElementById('sidebar-toggle');
+
+        if (!sidebar || !overlay || !toggle) return;
+
+        const openSidebar = () => {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+        };
+
+        const closeSidebar = () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+        };
+
+        toggle.addEventListener('click', openSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeSidebar();
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                closeSidebar();
+            }
+        });
+    })();
+</script>
 
 </body>
 </html>
