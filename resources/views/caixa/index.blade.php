@@ -40,6 +40,18 @@
             outline: none;
         }
 
+        .sale-panel {
+            margin-left: -140px;
+        }
+
+        @media (max-width: 1024px) {
+            .sale-panel {
+                margin-left: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
         .btn-primary {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
@@ -406,7 +418,7 @@
                         </div>
 
                         <div class="overflow-x-auto px-4 py-2">
-                            <table class="w-full text-sm min-w-[600px] responsive-table">
+                            <table class="w-full text-sm responsive-table">
                                 <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
                                 <tr>
                                     <th class="px-6 py-3 text-left">Categoria</th>
@@ -423,7 +435,7 @@
                     </div>
                 </div>
 
-                <div class="glass-card" style="margin-left: -140px; padding: 24px; border-radius: 20px; display: flex; flex-direction: column; max-height: calc(100% - 32px);">
+                <div class="glass-card sale-panel" style="padding: 24px; border-radius: 20px; display: flex; flex-direction: column; max-height: calc(100% - 32px);">
                     <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 2px solid #e2e8f0;">
                         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
                             <h3 style="font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 800; margin: 0; color: #0f172a;">Venda Atual</h3>

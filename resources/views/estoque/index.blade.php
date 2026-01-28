@@ -83,7 +83,7 @@
                 <div>
                     <form method="GET" action="{{ route('estoque.index') }}" class="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-4">
 
-                        <div class="d-flex mb-3">
+                        <div class="d-flex flex-wrap gap-2 mb-3">
                             <div class="p-2 ">
                                 <div class="flex items-center gap-2 w-full border rounded-lg p-2">
                                     <i class="bi bi-search"></i>

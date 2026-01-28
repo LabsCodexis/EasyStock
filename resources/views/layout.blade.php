@@ -19,6 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/vuetify@3.5.14/dist/vuetify.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.5.14/dist/vuetify.min.js"></script>
 
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <style>
         @view-transition { navigation: auto; }
 
@@ -51,11 +52,12 @@
             .responsive-table td {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
+                align-items: flex-start;
                 gap: 12px;
                 padding: 8px 12px;
-                text-align: right;
+                text-align: left;
                 border: 0;
+                word-break: break-word;
             }
 
             .responsive-table td::before {
@@ -64,14 +66,19 @@
                 color: #64748b;
                 text-align: left;
                 padding-right: 12px;
+                flex: 0 0 42%;
+            }
+
+            .responsive-table td > * {
+                max-width: 100%;
             }
 
             .responsive-table td[data-label="Ações"] {
-                justify-content: flex-end;
+                justify-content: space-between;
             }
 
             .responsive-table td[data-label="Ações"]::before {
-                margin-right: auto;
+                margin-right: 0;
             }
         }
     </style>
